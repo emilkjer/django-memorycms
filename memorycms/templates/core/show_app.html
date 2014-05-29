@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+app: {{app.pk}}
+
+<br>
+{% if not app.top_entity %}
+<form action="{% url 'app-show' app.pk %}" method="post">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+{% endif %}
+
+
+<ul>
+{% for entity in entities %}
+<li>{% if entity.group %}
+        <a href="{% url 'entity-show-group' entity.group.pk %}">Show group {{entity.name}}</a>
+    {% else %}
+        {{entity.name}}: {{entity}}
+    {% endif %}
+{% endfor %}
+</ul>
+
+<ul>
+<li><a href="{% url 'entity-add-string' top_group.pk %}">add string</a>
+<li><a href="{% url 'entity-add-text' top_group.pk %}">add text</a>
+<li><a href="{% url 'entity-add-group' top_group.pk %}">add group</a>
+</ul>
+{% endblock %}

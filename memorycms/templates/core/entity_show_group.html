@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+Show group {{group.pk}}
+<ul>
+{% for entity in entities %}
+<li>{% if entity.group %}
+        <a href="{% url 'entity-show-group' entity.group.pk %}">Show group {{entity.name}}</a>
+    {% else %}
+        {{entity.name}}: {{entity}}
+    {% endif %}
+{% endfor %}
+</ul>
+
+<ul>
+<li><a href="{% url 'entity-add-string' group.pk %}">add string</a>
+<li><a href="{% url 'entity-add-text' group.pk %}">add text</a>
+<li><a href="{% url 'entity-add-group' group.pk %}">add group</a>
+</ul>
+
+{% if parent_group %}<a href="{% url 'entity-show-group' parent_group.pk %}">Back to parent</a>{% endif %}
+
+{% endblock %}

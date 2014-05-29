@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if message %}{{message}}<br><hr>{% endif %}
+<form action="{% url reference_url group.pk %}" method="post">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+
+<a href="{% url 'entity-show-group' group.pk %}">Back to group</a>
+{% endblock %}

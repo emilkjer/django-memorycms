@@ -1,0 +1,17 @@
+{% load staticfiles %}
+<html ng-app="memoryApp">
+
+<head>
+    <script src="{{ STATIC_URL }}js/bower_components/angular/angular.js"></script>
+    <script src="{{ STATIC_URL }}js/bower_components/angular-route/angular-route.js"></script>
+    <script src="{{ STATIC_URL }}js/app.js"></script>
+    <script src="{{ STATIC_URL }}js/controllers.js"></script>
+</head>
+<body>
+<a href="{% url 'apps-show' %}">all apps</a> | <a href="{% url 'app-add' %}">new app</a>
+    <hr>
+      <div ng-view></div>
+    <hr>
+{% block content%}{% endblock %}
+</body>
+</html>

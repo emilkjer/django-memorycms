@@ -1,0 +1,12 @@
+<p ng-if="result.parent_group_id"><a href="#/apps/{$ appId $}/group/{$ result.parent_group_id $}">Back to parent</a></p>
+<ul class="group-items">
+    <li ng-repeat="item in result.entities">
+        <p ng-if="!item.group">{$ item.name $}</p>
+        <p ng-if="item.group"><a href="#/apps/{$ appId $}/group/{$ item.group $}">{$ item.name $}</a></p>
+    </li>
+</ul>
+
+<hr>
+APP ID: {$ appId $}<br/>
+PARENT GROUP ID: {$ result.parent_group_id $}<br/>
+RESULT: {$result$}<br/>

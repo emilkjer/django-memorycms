@@ -15,6 +15,21 @@ partial_patterns = patterns('',
         PartialGroupView.as_view(template_name='app-detail.html'),
         name='app_detail'
     ),
+    url(
+        r'^app-add-text.html$',
+        PartialGroupView.as_view(template_name='app-add-text.html'),
+        name='app-add-text'
+    ),
+    url(
+        r'^app-add-string.html$',
+        PartialGroupView.as_view(template_name='app-add-string.html'),
+        name='app-add-string'
+    ),
+    url(
+        r'^app-add-group.html$',
+        PartialGroupView.as_view(template_name='app-add-group.html'),
+        name='app-add-group'
+    ),
 )
 
 

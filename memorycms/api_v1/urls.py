@@ -14,4 +14,19 @@ urlpatterns = patterns('api_v1.core_publisher',
         'get_group_content',
         name='get-group-content'
     ),
+    url(
+        r'app/(?P<group_id>\d+)/add_text/$',
+        'add_text',
+        name='add-text'
+    ),
+    url(
+        r'app/(?P<group_id>\d+)/add_string/$',
+        'add_string',
+        name='add-string'
+    ),
+    url(
+        r'app/(?P<group_id>\d+)/add_group/$',
+        'add_group',
+        name='add-group'
+    ),
 )

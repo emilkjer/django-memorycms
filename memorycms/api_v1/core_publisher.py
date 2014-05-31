@@ -31,6 +31,66 @@ def get_group_content(request, group_id):
     return HttpResponse(json.dumps(data), content_type="application/json")
 
 
+def add_text(request, group_id):
+    top_group = get_object_or_404(models.EntityTypeEntityGroup, pk=group_id)
+    data = {}
+    if request.is_ajax():
+        request_data = json.loads(request.body)
+        content = request_data.get('content','')
+        if len(content):
+            et = models.EntityBase.objects.create()
+            ets = models.EntityTypeText.objects.create(content=content)
+            et.entity_types.add(ets)
+            top_group.content.add(et)
+            data['message'] = 'Content added'
+            data['STATUS'] = '1'
+        else:
+            data['message'] = 'Missing data'
+            data['STATUS'] = '0'
+    return HttpResponse(json.dumps(data), content_type="application/json")
+
+def add_string(request, group_id):
+    top_group = get_object_or_404(models.EntityTypeEntityGroup, pk=group_id)
+    data = {}
+    if request.is_ajax():
+        request_data = json.loads(request.body)
+        content = request_data.get('content','')
+        if len(content):
+            et = models.EntityBase.objects.create()
+            ets = models.EntityTypeString.objects.create(content=content)
+            et.entity_types.add(ets)
+            top_group.content.add(et)
+            data['message'] = 'Content added'
+            data['STATUS'] = '1'
+        else:
+            data['message'] = 'Missing data'
+            data['STATUS'] = '0'
+    return HttpResponse(json.dumps(data), content_type="application/json")
+
+def add_group(request, group_id):
+    top_group = get_object_or_404(models.EntityTypeEntityGroup, pk=group_id)
+    data = {}
+    if request.is_ajax():
+        request_data = json.loads(request.body)
+        content = request_data.get('content','')
+        if len(content):
+            entity = models.EntityBase.objects.create()
+            group_type = models.EntityTypeEntityGroup.objects.create()
+            group_name = models.EntityTypeString.objects.create(
+                content=content)
+            entity.entity_types.add(group_name)
+            entity.entity_types.add(group_type)
+            entity.save()
+            top_group.content.add(entity)
+
+            data['message'] = 'Group added'
+            data['STATUS'] = '1'
+        else:
+            data['message'] = 'Missing data'
+            data['STATUS'] = '0'
+    return HttpResponse(json.dumps(data), content_type="application/json")
+
+
 
 #### TEST FUNCTIONS ####
 def test(request):

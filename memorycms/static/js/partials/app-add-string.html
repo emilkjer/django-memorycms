@@ -1,0 +1,8 @@
+<p>Group ID: {$ groupId $} <a href="#/apps/{$ appId $}/group/{$ groupId $}">Back to group</a></p>
+<p ng-if='result'>{$ result.message $}</p>
+<form name="addTextForm" class="add-form" ng-submit="submit()">
+    <input type="text" ng-model="text" name="text" />
+    <input type="submit" id="submit" value="Submit" />
+</form>
+
+

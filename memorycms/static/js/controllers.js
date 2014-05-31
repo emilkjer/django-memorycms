@@ -17,6 +17,7 @@ memoryCMSControllers.controller('AppDetailCtrl', ['$scope', '$routeParams', '$ht
         $http.get('/api/app/'+$routeParams.appId+'/')
             .success(function(result){
                 $scope.result = result;
+                $scope.groupId = result.top_group_id;
             }
         );
     }

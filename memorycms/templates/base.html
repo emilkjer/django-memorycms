@@ -10,9 +10,8 @@
 </head>
 <body>
 <a href="{% url 'apps-show' %}">all apps</a> | <a href="{% url 'app-add' %}">new app</a>
-    <hr>
-      <div ng-view></div>
-    <hr>
+<hr>
+    <div ng-view></div>
 {% block content%}{% endblock %}
 </body>
 </html>

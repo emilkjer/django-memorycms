@@ -1,10 +1,4 @@
 {% extends 'base.html' %}
 {% block content %}
-<ul>
-{% for app in apps %}
-    <li><a href="{% url 'app-show' app.pk %}">{{app.title}}</a> | <a href="#/apps/{{app.pk}}">ang</a>
-
-{% endfor %}
-</ul>
 
 {% endblock %}

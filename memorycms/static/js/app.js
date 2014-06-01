@@ -5,6 +5,7 @@ var memoryApp = angular.module('memoryApp', [
 ]).run(function($http, $cookies){
     // set the CSRF token here
     $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
+    $http.defaults.headers.common['X-CSRFToken'] = $cookies.csrftoken;
 });
 
 memoryApp.config(['$routeProvider',
@@ -13,6 +14,10 @@ memoryApp.config(['$routeProvider',
       when('/apps', {
         templateUrl: 'partials/app-all.html',
         controller: 'AppAllCtrl'
+      }).
+      when('/login', {
+        templateUrl: 'partials/login-page.html',
+        controller: 'LoginCtrl'
       }).
       when('/apps/:appId', {
         templateUrl: 'partials/app-detail.html',
@@ -46,7 +51,7 @@ memoryApp.config(function($interpolateProvider) {
 });
 
 memoryApp.config(['$httpProvider', function($httpProvider) {
-    $httpProvider.defaults.headers.common['X-CSRFToken'] = '{{ csrf_token|escapejs }}';
+    // $httpProvider.defaults.headers.common['X-CSRFToken'] = '{{ csrf_token|escapejs }}';
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     // $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     // $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';

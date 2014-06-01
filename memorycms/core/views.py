@@ -5,8 +5,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from . import models
 from . import forms
 
-
-
 class PartialGroupView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(PartialGroupView, self).get_context_data(**kwargs)

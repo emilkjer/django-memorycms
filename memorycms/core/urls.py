@@ -6,14 +6,19 @@ from .views import PartialGroupView
 partial_patterns = patterns('',
     #TODO this can be done in a smarter way...
     url(
+        r'^login-page.html$',
+        PartialGroupView.as_view(template_name='login-page.html'),
+        name='login-page'
+    ),
+    url(
         r'^app-all.html$',
         PartialGroupView.as_view(template_name='app-all.html'),
-        name='app_all'
+        name='app-all'
     ),
     url(
         r'^app-detail.html$',
         PartialGroupView.as_view(template_name='app-detail.html'),
-        name='app_detail'
+        name='app-detail'
     ),
     url(
         r'^app-add-text.html$',

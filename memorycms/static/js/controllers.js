@@ -76,6 +76,34 @@ memoryCMSControllers.controller('AddStringCtrl', ['$scope', '$routeParams', '$ht
     }
 ]);
 
+
+
+memoryCMSControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$http',
+    function($scope, $routeParams, $http){
+        $scope.username = '';
+        $scope.password = '';
+        $scope.result = '';
+        $scope.showForm = 1;
+        $scope.submit = function() {
+            $http.post('/api/login/', 
+                {
+                    'username': this.username,
+                    'password': this.password 
+                }
+                ).success(function(data) {
+                    $scope.result = data;
+                    if($scope.result.STATUS==1){
+                        $scope.username = '';
+                        $scope.password = '';
+                        $scope.showForm = 0;
+                    }
+                });
+            $scope.username = this.username;
+            console.log(this.result);
+        };
+    }
+]);
+
 memoryCMSControllers.controller('AddGroupCtrl', ['$scope', '$routeParams', '$http',
     function($scope, $routeParams, $http){
         $scope.text = '';

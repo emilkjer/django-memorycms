@@ -1,5 +1,6 @@
 import json
 
+from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 
@@ -86,11 +87,34 @@ def add_group(request, group_id):
             data['message'] = 'Group added'
             data['STATUS'] = '1'
         else:
-            data['message'] = 'Missing data'
+            data['message'] = 'Invalid data'
             data['STATUS'] = '0'
     return HttpResponse(json.dumps(data), content_type="application/json")
 
-
+def auth_login(request):
+    data = {
+        'message': 'Missing data',
+        'STATUS': 0,
+    }
+    if request.is_ajax():
+        request_data = json.loads(request.body)
+        username = request_data.get('username','')
+        password = request_data.get('password','')
+        if len(username) and len(password):
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    data['message'] = 'Logged in'
+                    data['STATUS'] = '1'
+                else:
+                    # Return a 'disabled account' error message
+                    data['message'] = 'Disabled account'
+                    
+            else:
+                # Return an 'invalid login' error message.
+                data['message'] = 'Invalid login'
+    return HttpResponse(json.dumps(data), content_type="application/json")
 
 #### TEST FUNCTIONS ####
 def test(request):
@@ -101,3 +125,5 @@ def entity_base_all(request):
     content = models.EntityBase.objects.all()
     data = utils.get_all_group_content(content)
     return HttpResponse(json.dumps(data), content_type="application/json")
+
+

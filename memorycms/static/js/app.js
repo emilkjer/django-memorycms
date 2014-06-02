@@ -19,6 +19,10 @@ memoryApp.config(['$routeProvider',
         templateUrl: 'partials/login-page.html',
         controller: 'LoginCtrl'
       }).
+      when('/logout', {
+        templateUrl: 'partials/login-page.html',
+        controller: 'LogoutCtrl'
+      }).
       when('/apps/:appId', {
         templateUrl: 'partials/app-detail.html',
         controller: 'AppDetailCtrl'

@@ -104,6 +104,15 @@ memoryCMSControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$http',
     }
 ]);
 
+
+memoryCMSControllers.controller('LogoutCtrl', ['$scope', '$routeParams', '$http', '$location', '$window',
+    function($scope, $routeParams, $http, $location, $window){
+        $http.get('/api/logout/').success(function(data) {
+            $window.location.href = '#/login';
+        });    
+    }
+]);
+
 memoryCMSControllers.controller('AddGroupCtrl', ['$scope', '$routeParams', '$http',
     function($scope, $routeParams, $http){
         $scope.text = '';

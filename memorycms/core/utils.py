@@ -1,12 +1,16 @@
 from core import models
 
 def get_apps_content(apps):
-    data = []
+
+    entities = []
     for app in apps:
-        data.append({
+        entities.append({
             'title': app.title,
             'id': app.pk,
         })
+    data = {
+        'apps': entities,
+    }
     return data
         
 

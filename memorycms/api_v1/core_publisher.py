@@ -1,6 +1,6 @@
 import json
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 
@@ -9,8 +9,13 @@ from core import utils
 
 def apps(request):
     """Return a list of all apps"""
+    if not request.user.is_authenticated():
+        data = {'login': 0}
+        return HttpResponse(json.dumps(data), content_type="application/json")
+
     apps = models.App.objects.all()
     data = utils.get_apps_content(apps)
+    data['login'] = 1
     return HttpResponse(json.dumps(data), content_type="application/json")
 
 def get_app_content(request, app_id):
@@ -114,6 +119,16 @@ def auth_login(request):
             else:
                 # Return an 'invalid login' error message.
                 data['message'] = 'Invalid login'
+    return HttpResponse(json.dumps(data), content_type="application/json")
+
+def auth_logout(request):
+    print "hello"
+    logout(request)
+    data = {
+        'message': 'logged out',
+        'login': 0,
+    }
+
     return HttpResponse(json.dumps(data), content_type="application/json")
 
 #### TEST FUNCTIONS ####

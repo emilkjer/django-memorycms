@@ -7,6 +7,8 @@ urlpatterns = patterns('api_v1.core_publisher',
     url(r'entity_base_all$', 'entity_base_all', name='entity_base_all'),
 
     # API URLS
+    
+    url(r'logout/$', 'auth_logout', name='auth-logout'),
     url(r'login/$', 'auth_login', name='auth-login'),
     url(r'apps/$', 'apps', name='all-apps'),
     url(r'app/(?P<app_id>\d+)/$', 'get_app_content', name='api-app-show'),

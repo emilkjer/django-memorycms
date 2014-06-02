@@ -9,7 +9,7 @@
     <script src="{{ STATIC_URL }}js/controllers.js"></script>
 </head>
 <body>
-<a href="{% url 'apps-show' %}">all apps</a> | <a href="{% url 'app-add' %}">new app</a> | <a href="#/login">login</a>
+<a href="{% url 'apps-show' %}">all apps</a> | <a href="{% url 'app-add' %}">new app</a> | <a href="#/login">login</a> | <a href="#/logout">logout</a>
 <hr>
     <div ng-view></div>
 {% block content%}{% endblock %}

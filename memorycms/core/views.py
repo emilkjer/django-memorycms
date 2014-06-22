@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -11,10 +11,12 @@ class PartialGroupView(TemplateView):
         # update the context
         return context
 
+
 def apps_show(request):
     apps = models.App.objects.all()
     return render(request, 'core/show_apps.html', {'apps': apps})
 
+@login_required()
 def app_show(request, app_id):
     app = get_object_or_404(models.App, pk=app_id)
     if request.POST:
@@ -57,6 +59,7 @@ def app_show(request, app_id):
 
 
 #### SHOW #####
+@login_required()
 def entity_show_group(request, group_id):
     group = get_object_or_404(models.EntityTypeEntityGroup, pk=group_id)
     entities = []
@@ -84,6 +87,7 @@ def entity_show_group(request, group_id):
 
 
 #### ADD #####
+@login_required()
 def app_add(request):
     if request.POST:
         form = forms.AppAddForm(request.POST)
@@ -109,6 +113,7 @@ def app_add(request):
     }
     return render(request, 'core/app_add.html', data)
 
+@login_required()
 def entity_add_group(request, group_id):
     group = get_object_or_404(models.EntityTypeEntityGroup, pk=group_id)
     message = None
@@ -135,6 +140,7 @@ def entity_add_group(request, group_id):
     }
     return render(request, 'core/entity_type_add_base.html', data)
 
+@login_required()
 def entity_add_string(request, group_id):
     group = get_object_or_404(models.EntityTypeEntityGroup, pk=group_id)
     message = None
@@ -157,7 +163,7 @@ def entity_add_string(request, group_id):
     }
     return render(request, 'core/entity_type_add_base.html', data)
 
-
+@login_required()
 def entity_add_text(request, group_id):
     group = get_object_or_404(models.EntityTypeEntityGroup, pk=group_id)
     message = None

@@ -100,3 +100,5 @@ TEMPLATE_DIRS = (
     BASE_DIR +  '/templates/' ,
     # os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
 )
+
+LOGIN_URL = '/#/login'

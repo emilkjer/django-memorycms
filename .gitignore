@@ -58,3 +58,5 @@ docs/_build/
 # Pycharm project
 *.idea
  
+# Settings
+memorycms/settings/production.py

@@ -4,8 +4,10 @@ var memoryApp = angular.module('memoryApp', [
   'memoryCMSControllers'
 ]).run(function($http, $cookies){
     // set the CSRF token here
-    $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
+//    $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
     $http.defaults.headers.common['X-CSRFToken'] = $cookies.csrftoken;
+
+    $http.defaults.headers.post['X-CSRFToken'] = $cookies['csrftoken'];
 });
 
 memoryApp.config(['$routeProvider',

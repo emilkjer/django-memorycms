@@ -61,5 +61,5 @@ docs/_build/
 # Settings
 memorycms/settings/production.py
 reload
-static
+./static
 

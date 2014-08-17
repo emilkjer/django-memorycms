@@ -1,7 +1,10 @@
 from django.conf.urls import patterns, url, include
 from .views import PartialGroupView
 
+from django.http import HttpResponse
 
+def hello(request):
+     return HttpResponse("Hello world")
 
 partial_patterns = patterns('',
     #TODO this can be done in a smarter way...
@@ -40,7 +43,7 @@ partial_patterns = patterns('',
 
 urlpatterns = patterns('core.views',
 
-    url(r'^$', 'apps_show', name='apps-show'),
+    url(r'^$', hello, name='hello'),
 
     url(r'^partials/', include(partial_patterns, namespace='partials')),
 

@@ -59,7 +59,6 @@ docs/_build/
 *.idea
  
 # Settings
-memorycms/settings/local.py
-reload
+backend/reload
 ./static
-
+backend/settings/local.py

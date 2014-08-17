@@ -6,18 +6,25 @@ from django.http import HttpResponse
 
 from core import models
 from core import utils
+from auth.utils import json_response, token_required, get_token
 
+
+@token_required
 def apps(request):
     """Return a list of all apps"""
-    if not request.user.is_authenticated():
+
+    token = get_token(request)
+    if not token:    
+    # if not request.user.is_authenticated():
         data = {'login': 0}
-        return HttpResponse(json.dumps(data), content_type="application/json")
+        return json_response(data)
 
     apps = models.App.objects.all()
     data = utils.get_apps_content(apps)
     data['login'] = 1
-    return HttpResponse(json.dumps(data), content_type="application/json")
+    return json_response(data)
 
+@token_required
 def get_app_content(request, app_id):
     """Return a list of the content of a given app"""
     app = get_object_or_404(models.App, pk=app_id)
@@ -25,16 +32,26 @@ def get_app_content(request, app_id):
     # we always have a group so get [0]
     top_group = app.top_entity.entity_types.filter(
         is_group=True)[0].get_top_class()
-
     data = utils.get_group_content(top_group)
-    
-    return HttpResponse(json.dumps(data), content_type="application/json")
+    data['app'] = {
+        'title': app.title,
+        'id': app.id,
+    }
+    return json_response(data)
 
+@token_required
 def get_group_content(request, group_id):
     """Return a list of content of a given group"""
     top_group = get_object_or_404(models.EntityTypeEntityGroup, pk=group_id)
     data = utils.get_group_content(top_group)
-    return HttpResponse(json.dumps(data), content_type="application/json")
+    return json_response(data)
+
+
+
+
+
+###### OLD STUFF ########
+
 
 
 def add_text(request, group_id):
@@ -103,6 +120,7 @@ def auth_login(request):
     }
     if request.is_ajax():
         request_data = json.loads(request.body)
+        print request_data
         username = request_data.get('username','')
         password = request_data.get('password','')
         if len(username) and len(password):

@@ -25,6 +25,7 @@ def get_group_content(top_group):
         for type in entity.entity_types.all():
             if type.is_group:
                 entity_data['group'] = type.get_top_class().pk
+                entity_data['id'] = type.get_top_class().pk
             entity_data['name'] = type.get_top_class().content
 
         entities.append(entity_data)

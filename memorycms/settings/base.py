@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'djangular',
 
     # Custom
+    'auth',
     'core',
     'testapp',
 )

@@ -59,7 +59,7 @@ docs/_build/
 *.idea
  
 # Settings
-memorycms/settings/production.py
+memorycms/settings/local.py
 reload
 ./static
 

@@ -64,3 +64,9 @@ backend/reload
 backend/settings/local.py
 ./backend/settings/local.py
 
+
+
+# Frontend
+frontend/test/
+frontend/node_modules/
+

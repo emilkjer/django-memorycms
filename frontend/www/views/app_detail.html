@@ -1,0 +1,12 @@
+app: {{result.app.id}}
+
+
+
+<ul> <li ng-repeat="entity in result.entities">
+<div ng-if="entity.group" >
+    <a href="#/apps/{{ appId }}/group/{{entity.id}}/">Show group {{entity.name}}</a>
+</div>
+<div ng-if="!entity.group" >
+    {{ entity.name }}: {{ entity }}
+</div>
+</li></ul>

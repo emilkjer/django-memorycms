@@ -5,8 +5,10 @@ from auth.models import Token
 
 def json_response(response_dict, status=200):
     response = HttpResponse(json.dumps(response_dict), content_type="application/json", status=status)
-    response['Access-Control-Allow-Origin'] = 'apimemorycms.moome.net memorycms.moome.net'
-    # response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Origin'] = 'apimemorycms.moome.net'
+    response['Access-Control-Allow-Headers'] = 'Content-Type,*'
+    response['Access-Control-Allow-Credentials'] = 'true'
+
     response['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
     return response
 

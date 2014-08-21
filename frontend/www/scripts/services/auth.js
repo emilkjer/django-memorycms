@@ -8,7 +8,8 @@ app.factory('AuthService', function ($http, $window, $q, API_SERVER) {
 
     $http.post(url, 'username=' + username + '&password=' + password, {
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded',
+        
       }
     }).then(
       function (response) {

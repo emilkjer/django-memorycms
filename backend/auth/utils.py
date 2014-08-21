@@ -9,6 +9,7 @@ def json_response(response_dict, status=200):
     # response['Access-Control-Allow-Headers'] = 'Content-Type,*'
     response['Access-Control-Allow-Credentials'] = 'true'
     response['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+    response['Access-Control-Allow-Methods'] = 'POST,GET,OPTIONS,PUT,DELETE'
 
     return response
 

@@ -9,8 +9,8 @@ def json_response(response_dict, status=200):
     #response['Access-Control-Allow-Origin'] = 'http://memorycms.moome.net'
     # response['Access-Control-Allow-Headers'] = 'Content-Type,*'
     #response['Access-Control-Allow-Credentials'] = 'true'
-    response['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With'
-    response['Access-Control-Allow-Methods'] = 'POST,GET,OPTIONS,PUT,DELETE'
+    # response['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With'
+    # response['Access-Control-Allow-Methods'] = 'POST,GET,OPTIONS,PUT,DELETE'
 
     return response
 

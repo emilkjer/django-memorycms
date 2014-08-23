@@ -45,7 +45,7 @@ INSTALLED_APPS = (
     'djangular',
     'corsheaders',
     # Custom
-    'auth',
+    'token_auth',
     'core',
     'testapp',
 )

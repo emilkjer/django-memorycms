@@ -41,13 +41,12 @@ INSTALLED_APPS = (
 
     # 3rd party
     'django_extensions',
-    'south',
     'djangular',
     'corsheaders',
+
     # Custom
     'token_auth',
     'core',
-    'testapp',
 )
 
 MIDDLEWARE_CLASSES = (

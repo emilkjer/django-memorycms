@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 from core import models
 from core import utils
-from auth.utils import json_response, token_required, get_token
+from token_auth.utils import json_response, token_required, get_token
 
 
 @token_required

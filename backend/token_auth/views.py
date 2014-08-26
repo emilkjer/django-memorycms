@@ -2,8 +2,9 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
-from auth.models import Token
-from auth.utils import json_response, token_required, get_token
+
+from .models import Token
+from .utils import json_response, token_required, get_token
 
 
 @csrf_exempt

@@ -1,6 +1,6 @@
 import json
 from django.http import HttpResponse
-from auth.models import Token
+from .models import Token
 
 
 def json_response(response_dict, status=200):

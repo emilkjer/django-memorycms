@@ -1,4 +1,4 @@
-app: {{result.app.id}}
+app: {{result.app.title}} [{{result.app.id}}]
 
 
 
@@ -10,3 +10,7 @@ app: {{result.app.id}}
     {{ entity.name }}: {{ entity }}
 </div>
 </li></ul>
+
+
+<p><a href="#/apps/{{ appId }}/group/{{result.top_group_id}}/add-string">Add string</a></p>
+{{result}}

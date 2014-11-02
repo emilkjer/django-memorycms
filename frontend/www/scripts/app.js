@@ -31,6 +31,10 @@ app.config(function ($routeProvider, $httpProvider) {
             templateUrl: 'views/app_detail.html',
             controller: 'GroupDetailCtrl'
         })
+        .when('/apps/:appId/group/:groupId/add-string', {
+            templateUrl: 'views/add_string.html',
+            controller: 'AddStringCtrl'
+        })
         .when('/apps', {
             templateUrl: 'views/app_all.html',
             controller: 'AppAllCtrl'

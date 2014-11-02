@@ -1,8 +1,9 @@
 import json
 
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import get_object_or_404
 
 from core import models
 from core import utils
@@ -46,7 +47,25 @@ def get_group_content(request, group_id):
     data = utils.get_group_content(top_group)
     return json_response(data)
 
-
+@csrf_exempt #TODO fix this
+@token_required
+def add_string(request, group_id):
+    top_group = get_object_or_404(models.EntityTypeEntityGroup, pk=group_id)
+    data = utils.get_group_content(top_group)
+    if request.method == 'POST':
+        request_data = json.loads(request.body)
+        content = request_data.get('content','')
+        if len(content):
+            et = models.EntityBase.objects.create()
+            ets = models.EntityTypeString.objects.create(content=content)
+            et.entity_types.add(ets)
+            top_group.content.add(et)
+            data['message'] = 'Content added'
+            data['STATUS'] = '1'
+        else:
+            data['message'] = 'Missing data'
+            data['STATUS'] = '0'
+    return json_response(data)
 
 
 
@@ -72,23 +91,6 @@ def add_text(request, group_id):
             data['STATUS'] = '0'
     return HttpResponse(json.dumps(data), content_type="application/json")
 
-def add_string(request, group_id):
-    top_group = get_object_or_404(models.EntityTypeEntityGroup, pk=group_id)
-    data = {}
-    if request.is_ajax():
-        request_data = json.loads(request.body)
-        content = request_data.get('content','')
-        if len(content):
-            et = models.EntityBase.objects.create()
-            ets = models.EntityTypeString.objects.create(content=content)
-            et.entity_types.add(ets)
-            top_group.content.add(et)
-            data['message'] = 'Content added'
-            data['STATUS'] = '1'
-        else:
-            data['message'] = 'Missing data'
-            data['STATUS'] = '0'
-    return HttpResponse(json.dumps(data), content_type="application/json")
 
 def add_group(request, group_id):
     top_group = get_object_or_404(models.EntityTypeEntityGroup, pk=group_id)

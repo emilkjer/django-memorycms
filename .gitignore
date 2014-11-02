@@ -69,4 +69,5 @@ backend/settings/local.py
 # Frontend
 frontend/test/
 frontend/node_modules/
-
+frontend/.tmp/
+deploy/

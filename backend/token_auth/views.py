@@ -6,36 +6,36 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Token
 from .utils import json_response, token_required, get_token
 
-
-@csrf_exempt
-def register(request):
-    if request.method == 'POST':
-        username = request.POST.get('username', None)
-        password = request.POST.get('password', None)
-
-        if username is not None and password is not None:
-            try:
-                user = User.objects.create_user(username, None, password)
-            except IntegrityError:
-                return json_response({
-                    'error': 'User already exists'
-                }, status=400)
-            token = Token.objects.create(user=user)
-            print 'success'
-            return json_response({
-                'token': token.token,
-                'username': user.username
-            })
-        else:
-            return json_response({
-                'error': 'Invalid Data'
-            }, status=400)
-    elif request.method == 'OPTIONS':
-        return json_response({})
-    else:
-        return json_response({
-            'error': 'Invalid Method'
-        }, status=405)
+#
+# @csrf_exempt
+# def register(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username', None)
+#         password = request.POST.get('password', None)
+#
+#         if username is not None and password is not None:
+#             try:
+#                 user = User.objects.create_user(username, None, password)
+#             except IntegrityError:
+#                 return json_response({
+#                     'error': 'User already exists'
+#                 }, status=400)
+#             token = Token.objects.create(user=user)
+#             print 'success'
+#             return json_response({
+#                 'token': token.token,
+#                 'username': user.username
+#             })
+#         else:
+#             return json_response({
+#                 'error': 'Invalid Data'
+#             }, status=400)
+#     elif request.method == 'OPTIONS':
+#         return json_response({})
+#     else:
+#         return json_response({
+#             'error': 'Invalid Method'
+#         }, status=405)
 
 @csrf_exempt
 def login(request):

@@ -43,5 +43,6 @@ app.config(function ($routeProvider, $httpProvider) {
             redirectTo: '/'
         });
 });
-app.constant('API_SERVER', 'http://localhost:5000/api/');
-//app.constant('API_SERVER', 'http://apimemorycms.moome.net/api/');
+
+//app.constant('API_SERVER', 'http://localhost:5000/api/');
+app.constant('API_SERVER', 'http://apimemorycms.moome.net/api/');
